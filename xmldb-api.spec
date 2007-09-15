@@ -36,7 +36,7 @@
 
 Name:       xmldb-api
 Version:    0.1
-Release:    %mkrel 0.1.%{cvs_version}.1.2.1
+Release:    %mkrel 0.1.%{cvs_version}.1.2.2
 Epoch:      1
 Summary:    XML:DB API for Java
 License:    BSD
@@ -58,8 +58,6 @@ Requires:         junit
 Requires:         xalan-j2
 %if %{gcj_support}
 BuildRequires:          java-gcj-compat-devel
-Requires(post):         java-gcj-compat
-Requires(postun):       java-gcj-compat
 %endif
 %if ! %{gcj_support}
 BuildArch:      noarch
