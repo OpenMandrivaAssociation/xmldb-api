@@ -36,7 +36,7 @@
 
 Name:       xmldb-api
 Version:    0.1
-Release:    %mkrel 0.1.%{cvs_version}.1.2.2
+Release:    %mkrel 0.1.%{cvs_version}.1.2.3
 Epoch:      1
 Summary:    XML:DB API for Java
 License:    BSD
@@ -49,7 +49,7 @@ Source2:    %{name}-license.txt
 Patch0:     %{name}-syntaxfix.patch
 Url:        http://xmldb-org.sourceforge.net
 BuildRequires:    ant >= 0:1.6
-BuildRequires:    jpackage-utils >= 0:1.6
+BuildRequires:    java-rpmbuild >= 0:1.6
 BuildRequires:    junit
 BuildRequires:    xalan-j2
 Requires(pre):    jpackage-utils >= 0:1.6
