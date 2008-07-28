@@ -28,8 +28,7 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-%define _with_gcj_support 1
-%define gcj_support %{?_with_gcj_support:1}%{!?_with_gcj_support:%{?_without_gcj_support:0}%{!?_without_gcj_support:%{?_gcj_support:%{_gcj_support}}%{!?_gcj_support:0}}}
+%define gcj_support 0
 
 %define bname        xmldb
 %define cvs_version    20011111cvs
@@ -102,10 +101,7 @@ Javadoc for %{name}.
 
 %prep
 %setup -q -n xmldb 
-# remove all binary libs
-for j in $(find . -name "*.jar"); do
-    rm -f $j
-done
+%remove_java_binaries
 
 cp %{SOURCE1} build.xml
 
@@ -113,7 +109,8 @@ cp %{SOURCE1} build.xml
 
 %build
 export CLASSPATH=$(build-classpath junit xalan-j2)
-usejikes=false %{ant} -Dsrc=. -Djarname=%{name} -Dsdk.jarname=%{name}-sdk jar javadoc
+usejikes=false 
+%{ant} -Dant.build.javac.source=1.5 -Dant.build.javac.target=1.5 -Dsrc=. -Djarname=%{name} -Dsdk.jarname=%{name}-sdk jar javadoc
 
 %install
 rm -rf %{buildroot}
@@ -125,34 +122,26 @@ install -m 644 dist/%{name}-sdk.jar $RPM_BUILD_ROOT%{_javadir}/%{name}-sdk-%{ver
 (cd $RPM_BUILD_ROOT%{_javadir} && for jar in *-%{version}*; do ln -sf ${jar} ${jar/-%{version}/}; done)
 # javadoc
 install -d -m 755 $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
-cp -pr dist/doc/api/* $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
+cp -pr dist/doc/api $RPM_BUILD_ROOT%{_javadocdir}/%{name}-%{version}
 ln -s %{name}-%{version} $RPM_BUILD_ROOT%{_javadocdir}/%{name}
 
 #license
 install -d -m 755 $RPM_BUILD_ROOT/%{_docdir}/%{name}-%{version}
 cp %{SOURCE2} $RPM_BUILD_ROOT/%{_docdir}/%{name}-%{version}
 
-%if %{gcj_support}
-%{_bindir}/aot-compile-rpm
-%endif
+%{gcj_compile}
 
 %clean
 rm -rf %{buildroot}
 
 %if %{gcj_support}
 %post
-if [ -x %{_bindir}/rebuild-gcj-db ]
-then
-  %{_bindir}/rebuild-gcj-db
-fi
+%{update_gcjdb}
 %endif
 
 %if %{gcj_support}
 %postun
-if [ -x %{_bindir}/rebuild-gcj-db ]
-then
-  %{_bindir}/rebuild-gcj-db
-fi
+%{clean_gcjdb}
 %endif
 
 %files
