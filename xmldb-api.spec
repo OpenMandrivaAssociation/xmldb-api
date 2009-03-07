@@ -35,7 +35,7 @@
 
 Name:       xmldb-api
 Version:    0.1
-Release:    %mkrel 0.1.%{cvs_version}.1.2.4
+Release:    %mkrel 0.1.%{cvs_version}.1.2.5
 Epoch:      1
 Summary:    XML:DB API for Java
 License:    BSD
