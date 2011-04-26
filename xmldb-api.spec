@@ -51,6 +51,7 @@ BuildRequires:    ant >= 0:1.6
 BuildRequires:    java-rpmbuild >= 0:1.6
 BuildRequires:    junit
 BuildRequires:    xalan-j2
+BuildRequires:    xerces-j2
 BuildRequires:    xml-commons-jaxp-1.3-apis
 Requires(pre):    jpackage-utils >= 0:1.6
 Requires(post):   jpackage-utils >= 0:1.6
