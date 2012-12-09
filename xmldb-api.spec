@@ -168,3 +168,68 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %doc %{_javadocdir}/%{name}-%{version}
 %doc %{_javadocdir}/%{name}
+
+
+%changelog
+* Tue Apr 26 2011 Paulo Andrade <pcpa@mandriva.com.br> 1:0.1-0.1.20011111cvs.1.2.6mdv2011.0
++ Revision: 659454
+- Rebuild
+
+* Sat Mar 07 2009 Antoine Ginies <aginies@mandriva.com> 1:0.1-0.1.20011111cvs.1.2.5mdv2009.1
++ Revision: 350884
+- rebuild
+
+* Mon Jul 28 2008 Alexander Kurtakov <akurtakov@mandriva.org> 1:0.1-0.1.20011111cvs.1.2.4mdv2009.0
++ Revision: 251948
+- fix build
+
+  + Oden Eriksson <oeriksson@mandriva.com>
+    - rebuild
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - kill re-definition of %%buildroot on Pixel's request
+
+  + Anssi Hannula <anssi@mandriva.org>
+    - buildrequire java-rpmbuild, i.e. build with icedtea on x86(_64)
+
+* Sat Sep 15 2007 Anssi Hannula <anssi@mandriva.org> 1:0.1-0.1.20011111cvs.1.2.2mdv2008.0
++ Revision: 87281
+- rebuild to filter out autorequires of GCJ AOT objects
+- remove unnecessary Requires(post) on java-gcj-compat
+
+* Tue Jul 03 2007 David Walluck <walluck@mandriva.org> 1:0.1-0.1.20011111cvs.1.2.1mdv2008.0
++ Revision: 47333
+- Import xmldb-api
+
+
+
+* Mon Feb 12 2007 Deepak Bhole <dbhole@redhat.com> 1:0.1-0.1.20011111cvs.1jpp.1.fc7
+- Update to Fedora specs
+
+* Fri Sep 08 2006 Ralph Apel <r.apel at r-apel.de> 0:0.1-0.20041010.3jpp
+- Add post/postun Requires for javadoc
+- Add gcj_support option
+
+* Mon May 29 2006 Fernando Nasser <fnasser@redhat.com> 0:0.1-0.20041010.2jpp
+- First JPP 1.7 build
+
+* Thu Oct 20 2005 Ralph Apel <r.apel at r-apel.de> 0:0.1-0.20041010.1jpp
+- Upgrade to recent
+- Add  -common
+
+* Tue Apr 26 2005 Fernando Nasser <fnasser@redhat.com> 0:0.1-0.20011111.3jpp
+- Rebuild with standard version scheme
+
+* Thu Aug 26 2004 Ralph Apel <r.apel at r-apel.de> 0:20011111-3jpp
+- Build with ant-1.6.2
+
+* Mon May 05 2003 David Walluck <david@anti-microsoft.org> 0:20011111-2jpp
+- update for JPackage 1.5
+- fix sdk package summary
+- fix for newer javac's
+
+* Thu Mar 28 2002 Guillaume Rousse <guillomovitch@users.sourceforge.net> 20011111-1jpp 
+- first JPackage release
